@@ -3,14 +3,28 @@
   width: 100%;
   position: relative;
   padding-top: 120px;
+  background-color: var(--color-black); /* Add this */
+}
+
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: var(--color-black);
 }
 
 .hero__text-sections {
+  position: relative;
+  z-index: 3;
   display: flex;
   width: 100%;
   padding: 0 5rem;
   justify-content: space-between;
 }
+
 
 .hero__section {
   flex: 1;
@@ -48,7 +62,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 15; /* Make sure this is between text and footer */
+  z-index: 2; /* Make sure this is between text and footer */
   display: none;
 }
 

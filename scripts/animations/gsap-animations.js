@@ -20,12 +20,14 @@ function stripTransition(stripColor, bgColor) {
     const tl = gsap.timeline();
     tl.set('.transition-strips', { display: 'block' })
       .set('.strip', { backgroundColor: stripColor })
+      
       .to('.strip', {
         x: 0,
         duration: 0.75,
         stagger: {
             each: 0.1,
-            ease: "power1.Out"
+            ease: "power1.Out",
+            scrub:2
         }
     })
     .to('.hero__section .text-line', {
@@ -33,10 +35,12 @@ function stripTransition(stripColor, bgColor) {
         duration: 1,
         stagger: {
             each: 0.1,
-            ease: "power2.Out"
+            ease: "power2.Out",
+            
         }
     }, "<")
-    .to('body', {
+   
+    .to('.hero__background', {
         backgroundColor: bgColor,
         duration: 0.2
     }, "-=0.5")
@@ -125,4 +129,3 @@ function menuCloseAnimation() {
     
     return tl;
 }
-
