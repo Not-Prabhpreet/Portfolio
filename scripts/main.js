@@ -1,3 +1,4 @@
+gsap.registerPlugin(ScrollTrigger);
 let isMenuOpen = false;
 let mainTimeline;
 
@@ -9,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuLinks = document.querySelectorAll('.menu-link');
 
     // Create transition strips
-    const stripsContainer = document.createElement('div');
+    const stripsContainer = document.querySelector('.transition-strips');
     stripsContainer.className = 'transition-strips';
     document.body.appendChild(stripsContainer);
 
@@ -21,10 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
         stripsContainer.appendChild(strip);
     }
 
-    // Main animation timeline
-    mainTimeline = gsap.timeline({
+       // Main animation timeline
+       mainTimeline = gsap.timeline({
         repeat: -1
     });
+
+    // Add this after the mainTimeline setup
+  
 
     // Add sequences to main timeline
     mainTimeline
