@@ -5,15 +5,18 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
   --color-black: #000000;
   --color-offwhite: #FAF3E0;
   --color-yellow: #ffd700;
-  --font-primary: 'Arial', sans-serif;  /* We can change this later */
+  --font-display: 'Syne', sans-serif;    
+  --font-body: 'Inter', sans-serif;      
 }
 
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-body);  /* Changed from font-primary to font-body */
   background-color: var(--color-black);
   color: var(--color-offwhite);
   line-height: 1.6;
@@ -31,6 +34,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .navbar {
   position: fixed;
   top: 0;
@@ -39,9 +43,10 @@ body {
   padding: 2rem;
   display: flex;
   justify-content: flex-start;
-  z-index: 100; /* High enough to stay above page content but below menu overlay */
-  pointer-events: auto; 
+  z-index: 100;
+  pointer-events: auto;
 }
+
 .menu-overlay {
   position: fixed;
   top: 0;
@@ -49,7 +54,7 @@ body {
   width: 100%;
   height: 100vh;
   background-color: var(--color-black);
-  display: none;  /* Start with display none */
+  display: none;
   justify-content: center;
   align-items: center;
   opacity: 0;
@@ -57,14 +62,16 @@ body {
   z-index: 1000;
   transform: translateY(-100%);
 }
+
 .menu-btn {
+  font-family: var(--font-display);  /* Added this */
   mix-blend-mode: difference;
   background: var(--color-offwhite);
   border: 1px solid black;
   border-radius: 50px;
   padding: 12px 40px;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 600;  /* Adjusted weight for Syne */
   color: var(--color-black);
   cursor: pointer;
   position: relative;

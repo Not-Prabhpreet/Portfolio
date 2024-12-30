@@ -10,12 +10,11 @@
 
 .about__container {
   width: 100%;
-  min-height: 180vh; /* Changed from fixed height to min-height */
+  min-height: 180vh;
   display: flex;
-  padding:0 5rem; /* Reduced from 120px */
-  margin-top: 0; /* Removed margin-top */
+  padding: 0 5rem;
+  margin-top: 0;
   position: relative;
-  
 }
 
 .about__text-section {
@@ -26,19 +25,12 @@
 }
 
 .about__text {
+  font-family: var(--font-body);  /* Added this */
   font-size: 1.5rem;
   line-height: 1.6;
   color: #888;
   max-width: 800px;
-}
-
-.about__image-placeholder {
-  width: 500px; /* Fixed width */
-  height: 500px; /* Fixed height to ensure perfect circle */
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  margin: auto; /* This will help center it */
+  font-weight: 300;  /* Added for lighter weight that works well with Inter */
 }
 
 .about__image-placeholder {
@@ -55,7 +47,7 @@
   height: 120%;
   object-fit: cover;
   position: absolute;
-  top: -2%; /* Changed from -40% to -5% to show more of the bottom part */
+  top: -2%;
   left: -10%;
 }
 
@@ -66,7 +58,9 @@
   justify-content: center;
   padding-left: 4rem;
 }
+
 .letter {
+  font-family: var(--font-body);  /* Added this */
   display: inline-block;
   transition: color 0.1s ease;
   will-change: color;
@@ -76,4 +70,3 @@
 .letter + .letter {
   margin-left: 0.02em;
 }
-
