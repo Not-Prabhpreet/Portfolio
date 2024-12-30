@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
             attr: { 
                 d: `M 10 ${baseY} Q 1000 ${baseY + 100} 1990 ${baseY}` 
             },
-            duration: 1,
+            duration: 0.4,
             ease: "power2.inOut",
             yoyo: true,
-            repeat: 1
+            repeat: 2
         });
         
         // Fade in message
