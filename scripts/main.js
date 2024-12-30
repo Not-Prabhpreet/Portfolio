@@ -143,6 +143,28 @@ closeBtn.addEventListener('click', () => {
             isMenuOpen = false;  // Set this last
             console.log('Menu should now be closed');
         });
+        
     }
+});
+menuLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        // Close menu first
+        if (isMenuOpen) {
+            menuCloseAnimation().then(() => {
+                menuOverlay.classList.remove('menu-open');
+                isMenuOpen = false;
+                
+                // Scroll to section
+                window.scrollTo({
+                    top: targetSection.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    });
 });
 });
