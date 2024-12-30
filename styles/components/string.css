@@ -1,0 +1,35 @@
+.string-section {
+  width: 100%;
+  height: 80vh; /* Increased for more animation space */
+  background-color: var(--color-black);
+  position: relative;
+  overflow: hidden;
+  margin-top: -150px; /* Increased negative margin to pull it up more */
+}
+
+#string {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+#string svg {
+  width: 100%;
+  height: 100%;
+}
+
+#string path {
+  stroke: var(--color-offwhite);
+  stroke-width: 2px;
+}
+
+.string-message {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-offwhite);
+  font-size: 0.875rem;
+  opacity: 0;
+  pointer-events: none;
+}

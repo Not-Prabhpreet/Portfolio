@@ -1,15 +1,16 @@
 .about {
-  min-height: 220vh;
+  min-height: 180vh;
   width: 100%;
   background-color: var(--color-black);
   overflow: hidden;
   position: relative;
   margin-top: -40vh;
+  padding-bottom: 0;
 }
 
 .about__container {
   width: 100%;
-  min-height: 220vh; /* Changed from fixed height to min-height */
+  min-height: 180vh; /* Changed from fixed height to min-height */
   display: flex;
   padding:0 5rem; /* Reduced from 120px */
   margin-top: 0; /* Removed margin-top */
