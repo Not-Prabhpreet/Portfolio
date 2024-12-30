@@ -1,36 +1,60 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// Set initial states
-gsap.set('.about__text-section', {
-    x: '-100%',
-    opacity: 0
-});
+// First, split text into spans
+function splitTextIntoLetters() {
+    const paragraph = document.querySelector('.about__text');
+    const text = paragraph.textContent.trim();
+    const letters = text.split('');
+    
+    paragraph.textContent = '';
+    letters.forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter;
+        span.style.color = '#444';
+        span.className = 'letter';
+        paragraph.appendChild(span);
+    });
+}
 
-gsap.set('.about__image-section', {
-    x: '100%',  
-    opacity: 0
-});
+// Call splitTextIntoLetters immediately since we don't wait for animation
+splitTextIntoLetters();
 
-// Create ScrollTrigger animation
-let tl = gsap.timeline({
+// Image parallax
+gsap.to('.about__image', {
     scrollTrigger: {
         trigger: '.about',
-        start: "top 65%",    // Start when the top of about section reaches 60% of viewport
-        toggleActions: "play none none reset", // Play on enter, reset on leave
-        markers: true        // For debugging - we'll remove this later
-    }
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 2
+    },
+    y: "-20%",
+    ease: "none"
 });
 
-// Add animations to timeline
-tl.to('.about__text-section', {
-    x: 0,
-    opacity: 1,
-    duration: 1.2,
-    ease: "power2.out"
-})
-.to('.about__image-section', {
-    x: 0,
-    opacity: 1,
-    duration: 1.2,
-    ease: "power2.out"
-}, "-=1"); // Start slightly before the text animation finishes
+// Text highlight animation
+gsap.timeline({
+    scrollTrigger: {
+        trigger: '.about__text',
+        start: "top 80%",
+        end: "bottom center",
+        scrub: 0.5,
+        onUpdate: self => {
+            if(self.progress === 1) {
+                // Force all letters to be highlighted at the end
+                document.querySelectorAll('.letter').forEach(letter => 
+                    letter.style.color = 'var(--color-offwhite)'
+                );
+            }
+        }
+    }
+}).to('.letter', {
+    color: 'var(--color-offwhite)',
+    duration: 0.1,
+    stagger: {
+        each: 0.005,
+        from: 0,
+        axis: "x",
+        ease: "none"
+    },
+    ease: "none"
+});
