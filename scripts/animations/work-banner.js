@@ -7,7 +7,7 @@ gsap.to(banner, {
     ease: "none",
     scrollTrigger: {
         trigger: ".work-banner",
-        start: "top 30%", // Changed to start when banner hits center
+        start: "top 60%", // Changed to start when banner hits center
         end: "+=150%",      // Increased scroll distance
         scrub: 2,           // Made scrub faster for smoother movement
        //markers: true    // Uncomment to see trigger points
