@@ -128,4 +128,4 @@ function menuCloseAnimation() {
     });
     
     return tl;
-}
+} 

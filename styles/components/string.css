@@ -1,6 +1,6 @@
 .string-section {
   width: 100%;
-  height: 80vh; /* Increased for more animation space */
+  height: 60vh; /* Increased for more animation space */
   background-color: var(--color-black);
   position: relative;
   overflow: hidden;

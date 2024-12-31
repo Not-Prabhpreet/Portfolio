@@ -1,21 +1,36 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// First, split text into spans
 function splitTextIntoLetters() {
     const paragraph = document.querySelector('.about__text');
-    const text = paragraph.textContent.trim();
-    const letters = text.split('');
-    
+    const words = paragraph.textContent.trim().split(/\s+/);
     paragraph.textContent = '';
-    letters.forEach((letter, index) => {
-        const span = document.createElement('span');
-        span.textContent = letter;
-        span.style.color = '#444';
-        span.className = 'letter';
-        paragraph.appendChild(span);
+
+    words.forEach((word, wordIndex) => {
+        // Create a container for each word
+        const wordContainer = document.createElement('span');
+        wordContainer.className = 'word';
+        
+        // Split word into letters
+        const letters = word.split('');
+        letters.forEach(letter => {
+            const span = document.createElement('span');
+            span.textContent = letter;
+            span.style.color = '#444';
+            span.className = 'letter';
+            wordContainer.appendChild(span);
+        });
+
+        paragraph.appendChild(wordContainer);
+
+        // Add space after word (if not last word)
+        if (wordIndex < words.length - 1) {
+            const space = document.createElement('span');
+            space.textContent = ' ';
+            space.className = 'letter space';
+            paragraph.appendChild(space);
+        }
     });
 }
-
 // Call splitTextIntoLetters immediately since we don't wait for animation
 splitTextIntoLetters();
 

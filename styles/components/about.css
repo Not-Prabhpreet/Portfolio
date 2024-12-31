@@ -1,5 +1,5 @@
 .about {
-  min-height: 180vh;
+  min-height: 250vh;  /* Increased from 180vh to 220vh */
   width: 100%;
   background-color: var(--color-black);
   overflow: hidden;
@@ -10,7 +10,7 @@
 
 .about__container {
   width: 100%;
-  min-height: 180vh;
+  min-height: 220vh;  /* Match the above value */
   display: flex;
   padding: 0 5rem;
   margin-top: 0;
@@ -21,16 +21,16 @@
   flex: 1;
   padding-right: 4rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 55vh;  /* Adjusted to make sure text starts visible */
 }
-
 .about__text {
-  font-family: var(--font-body);  /* Added this */
+  font-family: var(--font-body);
   font-size: 1.5rem;
-  line-height: 1.6;
+  line-height: 1.8;        /* Increased line height */
   color: #888;
   max-width: 800px;
-  font-weight: 300;  /* Added for lighter weight that works well with Inter */
+ 
 }
 
 .about__image-placeholder {
@@ -60,13 +60,47 @@
 }
 
 .letter {
-  font-family: var(--font-body);  /* Added this */
   display: inline-block;
   transition: color 0.1s ease;
   will-change: color;
 }
 
+.letter.space {
+  margin: 0 0.2em; /* Adjust this value for desired word spacing */
+}
+
+/* Optional: add this if you want slightly more space between letters within words */
+.letter:not(.space) {
+  margin-right: 0.02em;
+}
 /* Add some spacing between letters if needed */
 .letter + .letter {
   margin-left: 0.02em;
+}
+.word {
+  display: inline-block; /* Keep words together */
+  white-space: nowrap;  /* Prevent word breaking */
+}
+.text-link {
+  color: var(--color-offwhite);
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.text-link:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-offwhite);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.text-link:hover:after {
+  transform: scaleX(1);
 }
