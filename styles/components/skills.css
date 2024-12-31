@@ -1,0 +1,79 @@
+.skills-showcase {
+  width: 100%;
+  height: 150vh;
+  background-color: var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -10%;
+}
+
+.skills-title {
+  position: relative; /* Important for absolute positioning of children */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skills-title h2 {
+  font-family: var(--font-display);
+  font-size: 15vw;
+  color: var(--color-offwhite);
+  text-align: center;
+  z-index: 1; /* Keep text above images */
+}
+
+.skills-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.image-placeholder {
+  width: 150px;  /* Slightly smaller */
+  height: 220px; /* Slightly smaller */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Position each image */
+.first-s-image {
+  position: absolute;
+  top: 18%;
+  left: 30%;
+}
+
+.k-image {
+  position: absolute;
+  top: 56%;
+  left: 20%;
+}
+
+.l-below-image {
+  position: absolute;
+  top: 58%;
+  left: 45%;
+}
+
+.l-above-image {
+  position: absolute;
+  top: 12%;
+  left: 55%;
+}
+
+.last-s-image {
+  position: absolute;
+  top: 60%;
+  right: 20%;
+}
