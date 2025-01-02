@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: "bottom top",
           scrub: 2
       },
-      y: "-22%",
+      y: "-23%",
       ease: "none"
   });
 
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: "bottom top",
           scrub: 2
       },
-      y: "22%",
+      y: "23%",
       ease: "none"
   });
 
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: "bottom top",
           scrub: 2
       },
-      y: "-22%",
+      y: "-23%",
       ease: "none"
   });
 
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: "bottom top",
           scrub: 2
       },
-      y: "22%",
+      y: "23%",
       ease: "none"
   });
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
           end: "bottom top",
           scrub: 2
       },
-      y: "-22%",
+      y: "-23%",
       ease: "none"
   });
 });

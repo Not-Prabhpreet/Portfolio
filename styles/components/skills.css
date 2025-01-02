@@ -1,6 +1,6 @@
 .skills-showcase {
   width: 100%;
-  height: 150vh;
+  height: 100vh;
   background-color: var(--color-black);
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
 /* Position each image */
 .first-s-image {
   position: absolute;
-  top: 18%;
+  top: 22%;
   left: 30%;
 }
 
@@ -68,7 +68,7 @@
 
 .l-above-image {
   position: absolute;
-  top: 12%;
+  top: 18%;
   left: 55%;
 }
 
