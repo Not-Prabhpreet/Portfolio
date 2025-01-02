@@ -80,3 +80,36 @@ body {
   align-items: center;
   gap: 10px;
 }
+@media screen and (max-width: 1024px) {
+  .navbar {
+      padding: 1.5rem;
+  }
+
+  .menu-btn {
+      padding: 10px 30px;
+      font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+      padding: 1rem;
+  }
+
+  .menu-btn {
+      padding: 8px 25px;
+      font-size: 1.2rem;
+      gap: 5px;
+  }
+
+  .menu-overlay {
+      padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu-btn {
+      padding: 6px 20px;
+      font-size: 1rem;
+  }
+}
