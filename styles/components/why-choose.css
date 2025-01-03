@@ -47,13 +47,17 @@
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .reason-card h3 {
   font-family: var(--font-display);
   font-size: 2.5rem;
   color: var(--color-offwhite);
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .hover-content {
@@ -63,27 +67,41 @@
   width: 100%;
   height: 100%;
   padding: 2.5rem;
-  background-color: var(--color-black);
+  background-color: var(--color-offwhite);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.5s ease;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   visibility: hidden;
+  transform: translateY(10px);
 }
 
 .hover-content p {
   font-family: var(--font-body);
   font-size: 1.2rem;
   line-height: 1.6;
-  color: var(--color-offwhite);
+  color: var(--color-black);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease 0.1s;
 }
 
-.reason-card:hover .hover-content {
+.reason-card:hover .hover-content,
+.reason-card:active .hover-content {
   opacity: 1;
   visibility: visible;
+  transform: translateY(0);
 }
 
-.reason-card:hover h3 {
+.reason-card:hover .hover-content p,
+.reason-card:active .hover-content p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reason-card:hover h3,
+.reason-card:active h3 {
+  color: var(--color-black);
   transform: translateY(-10px);
 }
 
@@ -102,4 +120,50 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .cards-row {
+      padding: 0 3rem;
+  }
+
+  .intro-card h2 {
+      font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards-row {
+      grid-template-columns: 1fr;
+      padding: 0 2rem;
+  }
+
+  .reason-card {
+      aspect-ratio: auto;
+      min-height: 350px;
+      padding: 2rem;
+  }
+
+  .reason-card h3 {
+      font-size: 2rem;
+  }
+
+  .hover-content {
+      padding: 2rem;
+  }
+
+  .hover-content p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .cards-row {
+      padding: 0 1.5rem;
+  }
+
+  .intro-card h2 {
+      font-size: 2.5rem;
+  }
 }

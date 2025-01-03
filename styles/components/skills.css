@@ -77,3 +77,64 @@
   top: 60%;
   right: 20%;
 }
+@media screen and (max-width: 1024px) {
+  .skills-title h2 {
+      font-size: 20vw;
+  }
+
+  .image-placeholder {
+      width: 120px;
+      height: 180px;
+  }
+
+  /* Adjust image positions */
+  .first-s-image { left: 25%; }
+  .k-image { left: 15%; }
+  .l-below-image { left: 40%; }
+  .l-above-image { left: 50%; }
+  .last-s-image { right: 15%; }
+}
+
+@media screen and (max-width: 768px) {
+  .skills-showcase {
+      height: 60vh;
+  }
+
+  .image-placeholder {
+      width: 90px;
+      height: 140px;
+  }
+
+  /* Further adjust positions */
+  .first-s-image { 
+      left: 20%;
+      top: 25%;
+  }
+  .k-image {
+      left: 10%;
+      top: 50%;
+  }
+  .l-below-image {
+      left: 35%;
+      top: 55%;
+  }
+  .l-above-image {
+      left: 45%;
+      top: 20%;
+  }
+  .last-s-image {
+      right: 10%;
+      top: 55%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .skills-title h2 {
+      font-size: 25vw;
+  }
+
+  .image-placeholder {
+      width: 70px;
+      height: 110px;
+  }
+}

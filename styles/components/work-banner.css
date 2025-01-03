@@ -21,3 +21,24 @@
   color: var(--color-offwhite);
 }
 
+@media screen and (max-width: 1024px) {
+  .bannerw-text {
+      font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .work-banner {
+      height: 40vh;
+  }
+
+  .bannerw-text {
+      font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bannerw-text {
+      font-size: 3rem;
+  }
+}

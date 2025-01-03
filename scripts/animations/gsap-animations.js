@@ -18,6 +18,8 @@ function textInAnimation(textColor) {
 
 function stripTransition(stripColor, bgColor) {
     const tl = gsap.timeline();
+    const isMobile = window.innerWidth <= 768;
+    
     tl.set('.transition-strips', { display: 'block' })
       .set('.strip', { backgroundColor: stripColor })
       
@@ -25,9 +27,9 @@ function stripTransition(stripColor, bgColor) {
         x: 0,
         duration: 0.75,
         stagger: {
-            each: 0.1,
+            each: isMobile ? 0.08 : 0.1,
             ease: "power1.Out",
-            scrub:2
+            scrub: 2
         }
     })
     .to('.hero__section .text-line', {
@@ -36,7 +38,6 @@ function stripTransition(stripColor, bgColor) {
         stagger: {
             each: 0.1,
             ease: "power2.Out",
-            
         }
     }, "<")
    
@@ -46,9 +47,9 @@ function stripTransition(stripColor, bgColor) {
     }, "-=0.5")
     .set('.strip', { x: '100%' })
     .set('.transition-strips', { display: 'none' });
+
     return tl;
 }
-
 function menuOpenAnimation() {
     console.log('Starting menu open animation');
     

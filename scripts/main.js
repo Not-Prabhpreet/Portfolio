@@ -14,21 +14,34 @@ document.addEventListener('DOMContentLoaded', () => {
     stripsContainer.className = 'transition-strips';
     document.body.appendChild(stripsContainer);
 
-    // Create 4 strips
-    for (let i = 0; i < 4; i++) {
-        const strip = document.createElement('div');
-        strip.className = 'strip';
-        strip.style.top = `${i * 25}%`;
-        stripsContainer.appendChild(strip);
+    // Create strips based on screen size
+    function createStrips() {
+        // Clear existing strips
+        stripsContainer.innerHTML = '';
+        
+        // Determine number of strips based on screen width
+        const isMobile = window.innerWidth <= 768;
+        const numberOfStrips = isMobile ? 6 : 4;
+        const stripHeight = isMobile ? 16.666666667 : 25;
+
+        for (let i = 0; i < numberOfStrips; i++) {
+            const strip = document.createElement('div');
+            strip.className = 'strip';
+            strip.style.top = `${i * stripHeight}%`;
+            strip.style.height = `${stripHeight}%`;
+            stripsContainer.appendChild(strip);
+        }
     }
 
-       // Main animation timeline
-       mainTimeline = gsap.timeline({
-        repeat: -1
-    });
+    // Initial creation
+    createStrips();
 
-    // Add this after the mainTimeline setup
-  
+    // Main animation timeline
+    // Main animation timeline
+// Main animation timeline
+mainTimeline = gsap.timeline({
+    repeat: -1
+});
 
     // Add sequences to main timeline
     mainTimeline
@@ -123,48 +136,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Menu Click Handlers
-   // Menu Click Handlers
-menuBtn.addEventListener('click', () => {
-    console.log('Menu button clicked, current state:', isMenuOpen);
-    if (!isMenuOpen) {
-        isMenuOpen = true;  // Set this first
-        menuOverlay.style.display = 'flex';  // Ensure display is set
-        menuOverlay.classList.add('menu-open');
-        menuOpenAnimation();
-        console.log('Menu should now be open');
-    }
-});
+    menuBtn.addEventListener('click', () => {
+        console.log('Menu button clicked, current state:', isMenuOpen);
+        if (!isMenuOpen) {
+            isMenuOpen = true;  // Set this first
+            menuOverlay.style.display = 'flex';  // Ensure display is set
+            menuOverlay.classList.add('menu-open');
+            menuOpenAnimation();
+            console.log('Menu should now be open');
+        }
+    });
 
-closeBtn.addEventListener('click', () => {
-    console.log('Close button clicked, current state:', isMenuOpen);
-    if (isMenuOpen) {
-        menuCloseAnimation().then(() => {
-            menuOverlay.classList.remove('menu-open');
-            isMenuOpen = false;  // Set this last
-            console.log('Menu should now be closed');
-        });
-        
-    }
-});
-menuLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        // Close menu first
+    closeBtn.addEventListener('click', () => {
+        console.log('Close button clicked, current state:', isMenuOpen);
         if (isMenuOpen) {
             menuCloseAnimation().then(() => {
                 menuOverlay.classList.remove('menu-open');
-                isMenuOpen = false;
-                
-                // Scroll to section
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
+                isMenuOpen = false;  // Set this last
+                console.log('Menu should now be closed');
             });
         }
     });
-});
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            // Close menu first
+            if (isMenuOpen) {
+                menuCloseAnimation().then(() => {
+                    menuOverlay.classList.remove('menu-open');
+                    isMenuOpen = false;
+                    
+                    // Scroll to section
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    });
+
+    // Add this at the end of your DOMContentLoaded event listener
+    window.addEventListener('resize', createStrips);
 });

@@ -87,3 +87,41 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+@media screen and (max-width: 768px) {
+  .menu-btn {
+      padding: 8px 20px;
+      font-size: 1.2rem;
+  }
+
+  .menu-overlay__content {
+      left: 0;
+      padding: 1rem;
+  }
+
+  .menu-link {
+      font-size: 3rem;
+      margin-bottom: -1.5rem;
+  }
+
+  .menu-link .arrow-right {
+      font-size: 2rem;
+      margin-left: 1rem;
+  }
+
+  .close-btn {
+      top: 2rem;
+      right: 2rem;
+  }
+
+  .close-btn i {
+      font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .menu-link {
+      font-size: 2.5rem;
+      margin-bottom: -1rem;
+  }
+}

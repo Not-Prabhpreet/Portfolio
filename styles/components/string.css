@@ -33,3 +33,30 @@
   opacity: 0;
   pointer-events: none;
 }
+
+@media screen and (max-width: 768px) {
+  .string-section {
+      height: 40vh;
+      margin-top: -100px;
+  }
+
+  #string svg {
+      height: 80%; /* Reduce height on mobile */
+  }
+
+  .string-message {
+      font-size: 0.75rem;
+      bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .string-section {
+      height: 30vh;
+      margin-top: -80px;
+  }
+
+  #string svg {
+      height: 60%;
+  }
+}

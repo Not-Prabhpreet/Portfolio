@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create timeline for this category
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: category,
-                start: "top 70%",
-                end: "top 20%",
-                toggleActions: "play none none reverse"
+                trigger: category, // Changed from ".skill_category" to category
+                start: "top 90%", // Changed to trigger earlier
+                end: "center center", // Adjusted end point
+                toggleActions: "play none none reverse",
+                // markers: true, // Uncomment for debugging
+                onEnter: () => {
+                    tl.play();
+                }
             }
         });
 
@@ -27,17 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0 
             },
             {
-                duration: 1,
+                duration: 0.8, // Slightly faster
                 y: 0,
                 opacity: 1,
                 ease: "power3.out"
             }
         )
         .to(line, {
-            duration: 1.2,
+            duration: 1,
             scaleX: 1,
             ease: "power3.inOut"
-        }, "-=0.5")
+        }, "-=0.3") // Adjusted overlap
         .fromTo(description,
             {
                 y: 30,
@@ -45,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 filter: 'blur(5px)'
             },
             {
-                duration: 1,
+                duration: 0.8,
                 y: 0,
                 opacity: 1,
                 filter: 'blur(0px)',
                 ease: "power3.out"
             }, 
-            "-=0.8"
+            "-=0.6"
         )
         .fromTo(techItems,
             {
@@ -59,33 +63,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0
             },
             {
-                duration: 0.8,
+                duration: 0.6,
                 y: 0,
                 opacity: 1,
-                stagger: 0.1,
+                stagger: 0.05, // Faster stagger
                 ease: "power3.out"
             }, 
-            "-=0.5"
+            "-=0.3"
         );
+
+        // Pause timeline initially
+        tl.pause();
     });
 
-    // Optional: Add hover effect for tech stack items
+    // Modify hover effect for touch devices
     const techItems = document.querySelectorAll('.tech-stack span');
     techItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            gsap.to(item, {
-                scale: 1.1,
-                duration: 0.3,
-                ease: "power2.out"
+        if ('ontouchstart' in window) {
+            // Touch devices - simple tap effect
+            item.addEventListener('touchstart', () => {
+                gsap.to(item, {
+                    scale: 1.1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
             });
-        });
+            
+            item.addEventListener('touchend', () => {
+                gsap.to(item, {
+                    scale: 1,
+                    duration: 0.2,
+                    ease: "power2.out"
+                });
+            });
+        } else {
+            // Mouse devices - original hover effect
+            item.addEventListener('mouseenter', () => {
+                gsap.to(item, {
+                    scale: 1.1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
 
-        item.addEventListener('mouseleave', () => {
-            gsap.to(item, {
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out"
+            item.addEventListener('mouseleave', () => {
+                gsap.to(item, {
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
             });
-        });
+        }
     });
 });
