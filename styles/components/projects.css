@@ -14,25 +14,124 @@
 }
 
 .project-card {
-  aspect-ratio: 16/9;
+  aspect-ratio: auto;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
   background: linear-gradient(45deg, #222, #333);
   cursor: pointer;
-  min-height: 400px;
+  min-height: 500px;
 }
 
+/* Video Background Styles */
+.card-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.card-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay Styles */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.4s ease;
+}
+
+/* Initial Card State */
+.card-initial {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  color: var(--color-offwhite);
+  z-index: 2;
+}
+
+.card-initial h3 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-offwhite);
+  opacity: 0.9; /* Added for better readability over video */
+}
+
+.view-details {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;  /* Increased padding */
+  background: rgba(250, 243, 224, 0.15); /* Slightly more visible */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(250, 243, 224, 0.2); /* Added subtle border */
+}
+.view-details i {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .view-details i {
+  transform: translateX(5px);
+}
+
+/* Close Button */
+
+.close-btn1 {
+  position: absolute;
+  top: 2rem;        /* Increased from 1.5rem */
+  right: 2rem;      /* Increased from 1.5rem */
+  background: rgba(0, 0, 0, 0.1);  /* Added subtle background */
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  padding: 0.5rem;  /* Added padding */
+  border-radius: 50%;  /* Made it circular */
+  transition: background 0.3s ease;  /* Added transition */
+}
+.close-btn1:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.close-btn1 i {
+  font-size: 1.75rem;
+  color: var(--color-black);
+  display: block;  /* Added to center icon */
+  line-height: 1;  /* Added to center icon */
+}
+
+/* Content Styles */
 .card-content {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  opacity: 0;
+  display: none;
+  background: var(--color-offwhite);
+}
+
+.content-wrapper {
   padding: 3rem;
-  background: rgba(0, 0, 0, 0.95);
-  transform: translateY(101%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -41,7 +140,7 @@
 .card-content h3 {
   font-family: var(--font-display);
   font-size: 2.5rem;
-  color: var(--color-offwhite);
+  color: var(--color-black);
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
@@ -49,26 +148,32 @@
 .card-description {
   font-family: var(--font-body);
   font-size: 1.2rem;
-  color: var(--color-offwhite);
-  margin-bottom: 1.5rem;
+  color: var(--color-black);
   line-height: 1.6;
+  margin-bottom: 2rem;
 }
 
-.tech-stack {
+/* Updated Tech Stack Style */
+.tech-stack1 {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin: 1.5rem 0;
+  gap: 0.75rem;
+  margin-top: auto;
+  margin-bottom: 2rem;
 }
 
-.tech-stack span {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  color: var(--color-black);
-  background: var(--color-offwhite);
-  padding: 0.5rem 1.5rem;
+.tech-stack1 span {
+  background: var(--color-black);
+  color: var(--color-offwhite);
+  padding: 0.6rem 1.2rem;
   border-radius: 2rem;
-  display: inline-block;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  letter-spacing: 0.5px;
+  transition: transform 0.3s ease;
+}
+.tech-stack1 span:hover {
+  transform: translateY(-2px);
 }
 .card-links {
   display: flex;
@@ -78,23 +183,20 @@
 
 .card-links a {
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--color-offwhite);
+  font-size: 1.5rem;
+  color: var(--color-black);
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card-links a:hover {
-  color: var(--color-yellow);
+  opacity: 0.7;
 }
 
-.project-card:hover .card-content {
-  transform: translateY(0);
-}
-
+/* Responsive Styles */
 @media screen and (max-width: 1024px) {
   .projects {
       padding: 6rem 3rem;
@@ -106,7 +208,6 @@
       padding: 4rem 2rem;
       position: relative;
       z-index: 5;
-      margin-top: -5%; /* Adjusted to reduce top gap */
   }
 
   .projects__container {
@@ -116,49 +217,46 @@
   }
 
   .project-card {
-      min-height: 550px; /* Increased for more content */
+      min-height: 450px;
       width: 100%;
       max-width: 100%;
       aspect-ratio: auto;
   }
 
-  .card-content {
+  .content-wrapper {
       padding: 2rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* Changed to better distribute space */
+  }
+
+  .card-initial h3 {
+      font-size: 2rem;
   }
 
   .card-content h3 {
       font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
   }
 
   .card-description {
       font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-      flex-shrink: 0;
-  }
-
-  .tech-stack {
-      gap: 0.75rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-  }
-
-  .tech-stack span {
-      font-size: 0.8rem;
-      padding: 0.4rem 1.2rem;
-      margin-bottom: 0.5rem;
-  }
-
-  .card-links {
-      margin-top: 1.5rem;
       margin-bottom: 1rem;
       flex-shrink: 0;
   }
+
+  .tech-stack1 {
+      gap: 0.5rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+  }
+
+  .card-links {
+      margin-top: auto;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+  }
+  .tech-stack1 span {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+}
 }
 
 @media screen and (max-width: 480px) {
@@ -167,37 +265,30 @@
   }
 
   .project-card {
-      min-height: 600px; /* Further increased for smaller screens */
+      min-height: 400px;
   }
 
-  .card-content {
+  .content-wrapper {
       padding: 1.5rem;
+  }
+
+  .card-initial h3 {
+      font-size: 1.6rem;
   }
 
   .card-content h3 {
       font-size: 1.6rem;
   }
 
-  .card-description {
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-  }
-
-  .tech-stack {
-      margin: 1.5rem 0;
-  }
-
-  .tech-stack span {
-      font-size: 0.75rem;
-      padding: 0.3rem 1rem;
-      margin-bottom: 0.5rem;
-  }
-
-  .card-links {
-      gap: 1.5rem;
+  .tech-stack1 {
+      font-size: 0.85rem;
   }
 
   .card-links a {
+      font-size: 0.9rem;
+  }
+
+  .view-details {
       font-size: 0.9rem;
   }
 }
