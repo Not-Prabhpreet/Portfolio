@@ -26,14 +26,15 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
         // Get elements
-        const cardVideo = card.querySelector('.card-video video');
+        const cardImage = card.querySelector('.card-video img');
         const cardOverlay = card.querySelector('.card-overlay');
         const cardInitial = card.querySelector('.card-initial');
         const cardContent = card.querySelector('.card-content');
         const closeBtn = card.querySelector('.close-btn1');
+        const viewDetailsBtn = card.querySelector('.view-details');
 
         // Safety check for elements
-        if (!cardVideo || !cardOverlay || !cardInitial || !cardContent || !closeBtn) {
+        if (!cardImage || !cardOverlay || !cardInitial || !cardContent || !closeBtn) {
             console.warn('Missing required elements in card:', card);
             return;
         }
@@ -46,11 +47,19 @@ window.addEventListener('DOMContentLoaded', () => {
         };
 
         // Set initial states
-        gsap.set(cardContent, { opacity: 0, display: 'none' });
-        gsap.set([contentElements.title, contentElements.description, 
-                 contentElements.techStack, contentElements.links], 
-                { y: 30, opacity: 0 });
-        gsap.set(closeBtn, { opacity: 0, visibility: 'hidden' });
+        function resetCardState() {
+            gsap.set(cardContent, { opacity: 0, display: 'none', scaleY: 0 });
+            gsap.set([contentElements.title, contentElements.description, 
+                     contentElements.techStack, contentElements.links], 
+                    { y: 30, opacity: 0 });
+            gsap.set(closeBtn, { opacity: 0, visibility: 'hidden', scale: 0 });
+            gsap.set(cardInitial, { y: 0, opacity: 1 });
+            gsap.set(cardOverlay, { 
+                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.8) 100%)'
+            });
+        }
+
+        resetCardState();
 
         // Create reveal timeline
         const revealTimeline = gsap.timeline({ paused: true });
@@ -62,67 +71,72 @@ window.addEventListener('DOMContentLoaded', () => {
                 duration: 0.3,
                 ease: "power2.inOut"
             })
-            .to(cardVideo, {
-                scale: 1.1,
-                duration: 0.5,
-                ease: "power2.out"
+            .to(cardOverlay, {
+                background: 'var(--color-offwhite)',
+                duration: 0.4
             }, "-=0.3")
             .to(cardContent, {
                 display: 'block',
                 opacity: 1,
-                duration: 0.1
-            }, "-=0.3")
+                scaleY: 1,
+                duration: 0.5,
+                ease: "power4.out"
+            })
             .to(closeBtn, {
                 opacity: 1,
                 visibility: 'visible',
+                scale: 1,
                 duration: 0.3,
-                ease: "power2.out"
+                ease: "back.out(1.7)"
             })
-            .to(contentElements.title, {
+            .to([contentElements.title, contentElements.description, 
+                contentElements.techStack, contentElements.links], {
                 y: 0,
                 opacity: 1,
                 duration: 0.4,
-                ease: "back.out(1.7)"
-            }, "-=0.2")
-            .to(contentElements.description, {
-                y: 0,
-                opacity: 1,
-                duration: 0.4,
-                ease: "back.out(1.7)"
-            }, "-=0.2")
-            .to(contentElements.techStack, {
-                y: 0,
-                opacity: 1,
-                duration: 0.4,
-                ease: "back.out(1.7)"
-            }, "-=0.2")
-            .to(contentElements.links, {
-                y: 0,
-                opacity: 1,
-                duration: 0.4,
-                ease: "back.out(1.7)"
-            }, "-=0.2");
+                ease: "back.out(1.7)",
+                stagger: 0.1
+            });
 
         let isOpen = false;
 
         function toggleCard(e) {
-            // Prevent any parent elements from receiving the click event
+            e.preventDefault();
             e.stopPropagation();
             
             if (!isOpen) {
-                gsap.to(cardOverlay, {
-                    backgroundColor: 'rgba(250, 243, 224, 1)',
-                    duration: 0.4,
-                    ease: "power2.inOut"
-                });
                 revealTimeline.play();
             } else {
-                gsap.to(cardOverlay, {
-                    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                    duration: 0.4,
-                    ease: "power2.inOut"
+                gsap.to(closeBtn, {
+                    scale: 0,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        closeBtn.style.visibility = 'hidden';
+                    }
                 });
-                revealTimeline.reverse();
+
+                gsap.to(cardContent, {
+                    scaleY: 0,
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        resetCardState();
+                        revealTimeline.pause(0);
+                        gsap.to(cardInitial, {
+                            y: 0,
+                            opacity: 1,
+                            duration: 0.3
+                        });
+                    }
+                });
+
+                gsap.to(cardOverlay, {
+                    background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 90%, rgba(0, 0, 0, 0.8) 100%)',
+                    duration: 0.4
+                });
             }
             isOpen = !isOpen;
         }
@@ -151,12 +165,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         // Event listeners
-        card.addEventListener('click', toggleCard);
-        closeBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isOpen) {
-                toggleCard(e);
-            }
-        });
+        viewDetailsBtn.addEventListener('click', toggleCard);
+        closeBtn.addEventListener('click', toggleCard);
     });
 });
