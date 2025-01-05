@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Determine number of strips based on screen width
         const isMobile = window.innerWidth <= 768;
         const numberOfStrips = isMobile ? 6 : 4;
-        const stripHeight = isMobile ? 16.666666667 : 25;
+        const stripHeight = isMobile ? 17 : 25;
 
         for (let i = 0; i < numberOfStrips; i++) {
             const strip = document.createElement('div');
@@ -52,7 +52,7 @@ mainTimeline = gsap.timeline({
             duration: 0
         },"-=2")
         .add(textInAnimation('var(--color-black)'))
-        .add('+=10')
+        .add('+=12')
         .add(stripTransition('var(--color-black)', 'var(--color-black)'))
         .to('.hero__subtitle', {
             color: 'var(--color-offwhite)',

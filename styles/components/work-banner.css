@@ -1,7 +1,8 @@
 .work-banner {
   margin-top: 2 rem;
+  margin-bottom: 2 rem;
   width: 100%;
-  height: 60vh;
+  height: 80vh;
   background-color: var(--color-black);
   overflow: hidden;
   display: flex;
