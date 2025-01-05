@@ -7,7 +7,7 @@
 /* Moving Banner Styles */
 .moving-banner {
   width: 100%;
-  padding: 2rem 0;  /* Increased padding */
+  padding: 2rem 0;
   background-color: var(--color-offwhite);
   position: relative;
   z-index: 100;
@@ -21,19 +21,25 @@
 
 .banner-content {
   display: flex;
-  padding: 0 2rem;  /* Increased padding */
+  padding: 0 2rem;
   white-space: nowrap;
 }
 
+/* Add these properties to your .banner-text */
 .banner-text {
   font-family: var(--font-display);
-  font-size: 2.5rem;  /* Increased font size */
+  font-size: 2.5rem;
   color: var(--color-black);
-  padding-right: 4rem;  /* Increased spacing between text */
-  font-weight: 700;  /* Made text bolder */
-  text-transform: uppercase;  /* Ensures text is uppercase */
+  padding-right: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: default;
+  opacity: 1; /* Important for the opacity animation */
+  transform-origin: center; /* For better scaling */
+  will-change: opacity, transform; /* Performance optimization */
 }
 
+/* Remove the transition property as GSAP will handle animations */
 
 .video-container {
   width: 100%;
