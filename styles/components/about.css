@@ -1,5 +1,5 @@
 .about {
-  min-height: 190vh;  /* Increased from 180vh to 220vh */
+  min-height: 210vh;  /* Increased from 180vh to 220vh */
   width: 100%;
   background-color: var(--color-black);
   overflow: hidden;
@@ -10,7 +10,7 @@
 
 .about__container {
   width: 100%;
-  min-height: 160vh;  /* Match the above value */
+  min-height: 210vh;  /* Match the above value */
   display: flex;
   padding: 0 5rem;
   margin-top: 0;
