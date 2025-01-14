@@ -25,10 +25,12 @@
   width: 100%;
   padding: 0 5rem;
   justify-content: space-between;
+  min-height: 500px; 
 }
 
 .hero__section {
   flex: 1;
+  min-width: 400px;
 }
 
 .hero__section h1 {
@@ -37,6 +39,7 @@
   line-height: 1.1;
   color: var(--color-offwhite);
   font-weight: 700;
+  font-size: clamp(4.6rem, 5vw, 6rem);
 }
 
 .footer-container {
@@ -77,6 +80,40 @@
   transform: translateX(100%);
 }
 
+/* Extra Large Screens (4K and above) */
+@media screen and (min-width: 2560px) {
+  .hero__text-sections {
+      padding: 0 10rem;
+  }
+
+  .hero__section h1 {
+      font-size: 6rem;
+  }
+}
+
+/* Large Desktop Screens */
+@media screen and (min-width: 1920px) and (max-width: 2559px) {
+  .hero__text-sections {
+      padding: 0 8rem;
+  }
+
+  .hero__section h1 {
+      font-size: 5.5rem;
+  }
+}
+
+/* Regular Desktop */
+@media screen and (min-width: 1200px) and (max-width: 1919px) {
+  .hero__text-sections {
+      padding: 0 5rem;
+  }
+
+  .hero__section h1 {
+      font-size: 4.6rem;
+  }
+}
+
+/* Small Desktop / Large Tablet */
 @media screen and (max-width: 1024px) {
   .hero {
       padding-top: 100px;
@@ -95,6 +132,7 @@
   }
 }
 
+/* Tablet / Mobile Landscape */
 @media screen and (max-width: 768px) {
   .hero {
       padding-top: 80px;
@@ -123,11 +161,7 @@
   }
 
   .transition-strips {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      display: block;
       min-height: 100vh;
       overflow: hidden;
   }
@@ -148,6 +182,7 @@
   }
 }
 
+/* Mobile */
 @media screen and (max-width: 480px) {
   .hero {
       padding-top: 60px;
