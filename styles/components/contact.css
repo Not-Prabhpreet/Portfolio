@@ -147,10 +147,15 @@
   width: 100%;
 }
 
-/* Footer Layout (same for all screen sizes) */
+/* Footer Layout */
 .footer {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  color: white;
+  z-index: 52;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -159,8 +164,17 @@
 .footer-center,
 .footer-right {
   display: flex;
-  flex-direction: row;
-  gap: 2rem;
+  gap: 3rem; /* Increased gap between links */
+  align-items: center;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-display);
+  position: relative;
+  padding-bottom: 2px;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 /* Desktop Footer Layout */
@@ -191,7 +205,7 @@
 /* Additional Mobile Optimizations */
 @media screen and (max-width: 480px) {
   .moving-banner {
-    width: 100%; /* Even narrower on mobile */
+    width: 90%; /* Even narrower on mobile */
   }
   
   .banner-text {
