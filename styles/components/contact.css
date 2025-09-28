@@ -5,15 +5,16 @@
   overflow: hidden;
 }
 
-/* Moving Banner Styles - Reduced width and centered */
+/* Moving Banner Styles - Full width */
 .moving-banner {
-  width: 100%;
+  width: 100vw; /* Full viewport width */
   padding: 0.5rem 0;
   background-color: var(--color-offwhite);
   position: relative;
   z-index: 100;
   overflow: hidden;
-  border-radius: 4px; /* Optional: adds slight rounding to banner edges */
+  margin-left: calc(-50vw + 50%); /* Center and expand to full width */
+  border-radius: 0; /* Remove border radius for full width */
 }
 
 .banner-wrapper {
@@ -29,7 +30,7 @@
 
 .banner-text {
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem); /* Slightly reduced max font size */
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
   color: var(--color-black);
   padding-right: 2rem;
   font-weight: 700;
@@ -77,19 +78,20 @@
 
 .email-link {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 5rem);
+  font-size: clamp(1.8rem, 4vw, 5rem); /* Reduced minimum size for mobile */
   color: white;
   text-decoration: none;
   transition: transform 0.3s ease;
   display: inline-block;
   word-break: break-word;
+  line-height: 1.1; /* Improved line height */
 }
 
 .email-link:hover {
   transform: translateX(10px);
 }
 
-/* Footer Styles */
+/* Footer Styles - MAJOR MOBILE FIXES */
 .footer {
   position: absolute;
   bottom: 5%;
@@ -97,15 +99,10 @@
   padding: 2rem 1.5rem;
   color: white;
   z-index: 52;
-}
-
-@media (min-width: 768px) {
-  .footer {
-    position: absolute; /* Back to absolute for desktop */
-    bottom: 5%; /* Reduced from 8% */
-    padding: 3rem 5rem;
-    background-color: transparent;
-  }
+  display: flex;
+  flex-direction: column; /* Stack vertically on mobile */
+  gap: 1rem;
+  align-items: center;
 }
 
 .footer-line {
@@ -130,6 +127,7 @@
   font-family: var(--font-display);
   position: relative;
   padding-bottom: 2px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Responsive font size */
 }
 
 .footer a::after {
@@ -147,34 +145,15 @@
   width: 100%;
 }
 
-/* Footer Layout */
-.footer {
-  position: absolute;
-  bottom: 5%;
-  width: 100%;
-  padding: 2rem 1.5rem;
-  color: white;
-  z-index: 52;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+/* Footer Layout - MOBILE FIRST APPROACH */
 .footer-left,
 .footer-center,
 .footer-right {
   display: flex;
-  gap: 3rem; /* Increased gap between links */
+  gap: 1.5rem; /* Smaller gap on mobile */
   align-items: center;
-}
-
-.footer a {
-  color: white;
-  text-decoration: none;
-  font-family: var(--font-display);
-  position: relative;
-  padding-bottom: 2px;
-  white-space: nowrap; /* Prevent text wrapping */
+  justify-content: center;
+  flex-wrap: wrap; /* Allow wrapping on very small screens */
 }
 
 /* Desktop Footer Layout */
@@ -183,13 +162,14 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 3rem 5rem;
   }
 
   .footer-left,
   .footer-center,
   .footer-right {
-    flex-direction: row;
     gap: 2rem;
+    flex-wrap: nowrap;
   }
 
   .footer-right {
@@ -205,20 +185,53 @@
 /* Additional Mobile Optimizations */
 @media screen and (max-width: 480px) {
   .moving-banner {
-    width: 90%; /* Even narrower on mobile */
+    width: 100vw; /* Keep full width on mobile too */
+    margin-left: calc(-50vw + 50%);
   }
   
   .banner-text {
-    font-size: 1.5rem;
-    padding-right: 1.5rem;
+    font-size: 1.2rem;
+    padding-right: 1rem;
   }
 
   .contact-content {
     top: 30%;
+    padding: 0 1rem;
   }
 
   .email-link {
-    font-size: 2rem;
+    font-size: 1.5rem; /* Even smaller on very small screens */
+    word-break: break-all; /* Force break on any character if needed */
+  }
+
+  .footer {
+    padding: 1.5rem 1rem;
+    bottom: 3%;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    gap: 1rem;
+  }
+
+  .footer a {
+    font-size: 0.85rem;
+    white-space: nowrap; /* Prevent individual link text from wrapping */
+  }
+}
+
+/* Very small screens - stack footer links vertically */
+@media screen and (max-width: 360px) {
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .email-link {
+    font-size: 1.3rem;
   }
 }
 
